@@ -1,0 +1,21 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """       
+        ans = 0
+        for i, letter in enumerate(s):  # 每個字母開頭都跑一次
+            r_list = []  # 用於儲存the longest substring
+            s_new = s[i:]   # form a new substring starts with "letter"
+            for sub_letter in s_new:
+                if sub_letter not in r_list:  
+                    r_list.append(sub_letter)
+                    ans = max(len(r_list), ans) # 這邊就要更新一次，以免走不到else
+                else:
+                    ans = max(len(r_list), ans)
+                    break            
+        return ans
+            
+# Runtime: 1992 ms, faster than 5.01% of Python online submissions for Longest Substring Without Repeating Characters.
+# Memory Usage: 12.1 MB, less than 60.72% of Python online submissions for Longest Substring Without Repeating Characters.
